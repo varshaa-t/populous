@@ -10,7 +10,7 @@ type NewsCardProps = {
 export default function NewsCard({date, title, img}: NewsCardProps){
 
     return (
-        <div className="flex flex-col space-y-3 h-full bg-white px-6 py-6">
+        <div className="flex flex-col space-y-3 h-full bg-white px-2 py-6 sm:px-6">
             <NewsTag/>
             <div>
                 <Image
@@ -23,7 +23,7 @@ export default function NewsCard({date, title, img}: NewsCardProps){
             </div>
             <div className="flex flex-col text-[13px] space-y-4">
                 <h3>{date}</h3>
-                <p className="text-[22px] w-[23vw] tracking-tight leading-6 hover:underline underline-offset-2 cursor-pointer">{title}</p>
+                <p className="text-[22px] w-[75vw] xs:w-[70vw] md:w-[30vw] lg:w-[23vw] tracking-tight leading-6 hover:underline underline-offset-2 cursor-pointer">{title}</p>
             </div>
         </div>
     )

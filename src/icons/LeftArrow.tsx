@@ -1,8 +1,8 @@
-import { IoIosArrowRoundBack } from "react-icons/io";
+import { TiArrowLeft } from "react-icons/ti";
 
 function LeftArrow() {
   return (
-    <IoIosArrowRoundBack />
+    <TiArrowLeft className="text-lg"/>
   )
 }
 

@@ -14,6 +14,9 @@ export default {
         foreground: "var(--foreground)",
         gray: "#ababab"
       },
+      screens: {
+        'xs': '500px'
+      }
     },
   },
   plugins: [],
