@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import {Navigation } from 'swiper/modules';
-import AngledRightArrow from "@/icons/AngledRightArrow";
+import Button from "./Button";
 
 export default function NewsSection(){
 
@@ -80,10 +80,9 @@ export default function NewsSection(){
                             <RightArrow/>
                         </div>
                     </div>
-                    <div className="flex space-x-3 pl-2 pr-3 py-2 rounded-md cursor-pointer hover:text-white hover:bg-[#1c19b5]">
-                        <AngledRightArrow/>
-                        <div className="text-sm font-semibold">View all</div>
-                    </div>
+                    <Button 
+                        text="View All"
+                    />
                 </div>
             </div>
             <div className="sm:pl-[1.5vw] md:pl-[2vw] lg:pl-[6vw] xl:pl-[6.5vw]">

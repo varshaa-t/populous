@@ -2,7 +2,7 @@ import { PiArrowElbowDownRightBold } from "react-icons/pi";
 
 function AngledRightArrow() {
   return (
-    <PiArrowElbowDownRightBold />
+    <PiArrowElbowDownRightBold className="text-sm"/>
   )
 }
 
