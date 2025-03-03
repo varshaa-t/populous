@@ -2,6 +2,7 @@ import ExploreSection from "@/components/ExploreSection";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
 import NewsSection from "@/components/NewsSection";
+import ProjectsSection from "@/components/ProjectsSection";
 
 export default function Home() {
   return (
@@ -23,6 +24,9 @@ export default function Home() {
         <div className="absolute top-20 px-20 w-full">
           <ExploreSection/>
         </div>
+      </div>
+      <div className="bg-white h-full pt-[900px]">
+        <ProjectsSection/>
       </div>
     </div>
   );
