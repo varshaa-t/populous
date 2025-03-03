@@ -1,3 +1,4 @@
+import DisciplinesSection from "@/components/DisciplinesSection";
 import ExploreSection from "@/components/ExploreSection";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
@@ -14,7 +15,7 @@ export default function Home() {
         <Navbar/>
         <HeroSection/>
       </div>
-      <div className="bg-white h-full pt-8 pb-14 xl:pb-20">
+      <div className="bg-white h-full pt-6 xs:pb-14 xs:pt-8 xl:pb-20">
         <NewsSection/>
       </div>
       <div className="relative h-screen">
@@ -25,8 +26,11 @@ export default function Home() {
           <ExploreSection/>
         </div>
       </div>
-      <div className="bg-white h-full pt-[900px]">
+      <div className="bg-white h-full pt-[10%] xs:pt-[10%] sm:pt-[20%] md:pt-[40%] lg:pt-[50%] xl:pt-[60%]">
         <ProjectsSection/>
+      </div>
+      <div className="bg-white h-full py-[12vw]">
+        <DisciplinesSection/>
       </div>
     </div>
   );

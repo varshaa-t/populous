@@ -12,7 +12,8 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        gray: "#ababab"
+        "gray": "#ababab",
+        "dark-blue": "#1c19b5"
       },
       screens: {
         'xs': '500px'

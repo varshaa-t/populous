@@ -9,9 +9,9 @@ type ProjectCardProps = {
 }
 
 const sizeClasses = {
-    "small": "rounded-md w-[630px]",
+    "small": "rounded-md w-full md:w-[45vw] lg:w-[41vw]",
     "medium": "rounded-md w-full",
-    "large": "rounded-none w-full brightness-[0.80]"
+    "large": "rounded-none h-screen object-cover md:h-auto w-full brightness-[0.80]"
 }
 
 const sizeAttributes = {

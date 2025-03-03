@@ -2,7 +2,6 @@
 
 import Close from "@/icons/Close";
 import Menu from "@/icons/Menu";
-import Image from "next/image";
 import { useState } from "react";
 
 export default function Navbar(){
@@ -10,7 +9,7 @@ export default function Navbar(){
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <nav className="flex justify-between pl-10 pr-4 pt-7">
+        <nav className="flex justify-between pl-3 pr-4 pt-3 xs:pl-10 xs:pt-7">
             <div className="text-xl font-extrabold text-white cursor-pointer">
                 POPULOUS
             </div>

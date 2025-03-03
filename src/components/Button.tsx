@@ -11,7 +11,7 @@ const variantClasses = {
 
 function Button({text, variant}: ButtonProps) {
   return (
-    <button className={`flex space-x-3 pl-2 pr-3 py-2 rounded-md cursor-pointer hover:text-white hover:bg-[#1c19b5] ${variant == "primary" ? variantClasses[variant] : ""}`}>
+    <button className={`flex space-x-3 pl-2 pr-3 py-2 rounded-md cursor-pointer hover:text-white hover:bg-dark-blue ${variant == "primary" ? variantClasses[variant] : ""}`}>
         <AngledRightArrow/>
         <div className="text-xs font-semibold">{text}</div>
     </button>

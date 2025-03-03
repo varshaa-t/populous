@@ -3,8 +3,8 @@ import ProjectCard from "./ProjectCard";
 
 function ProjectsSection() {
   return (
-    <div className='flex flex-col justify-between space-y-20'>
-        <div className='flex justify-between pl-[1.5vw] pr-[1.5vw] sm:pl-[4vw] sm:pr-[4vw] lg:pl-[8vw] lg:pr-[8vw]'>
+    <div className='flex flex-col justify-between space-y-[7vh] lg:space-y-[10vh]'>
+        <div className='flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between pl-[1.5vw] pr-[1.5vw] sm:pl-[4vw] sm:pr-[4vw] lg:pl-[8vw] lg:pr-[8vw]'>
             <div className="text-[27px]">Featured Projects</div>
             <ProjectCard
                 img="/project-1.webp"
