@@ -1,5 +1,6 @@
 import DisciplinesSection from "@/components/DisciplinesSection";
 import ExploreSection from "@/components/ExploreSection";
+import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
 import NewsSection from "@/components/NewsSection";
@@ -35,6 +36,9 @@ export default function Home() {
       </div>
       <div className="bg-white h-full pt-10 pb-20 xs:pb-36">
         <SustainabilityAndCareersSection/>
+      </div>
+      <div className="bg-dark-blue h-full xs:h-screen py-8">
+        <Footer/>
       </div>
     </div>
   );
