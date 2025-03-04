@@ -82,6 +82,7 @@ export default function NewsSection(){
                     </div>
                     <Button 
                         text="View All"
+                        variant="primary"
                     />
                 </div>
             </div>

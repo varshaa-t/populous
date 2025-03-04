@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
 import NewsSection from "@/components/NewsSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import SustainabilityAndCareersSection from "@/components/SustainabilityAndCareersSection";
 
 export default function Home() {
   return (
@@ -31,6 +32,9 @@ export default function Home() {
       </div>
       <div className="bg-white h-full py-[12vw]">
         <DisciplinesSection/>
+      </div>
+      <div className="bg-white h-full pt-10 pb-20 xs:pb-36">
+        <SustainabilityAndCareersSection/>
       </div>
     </div>
   );
