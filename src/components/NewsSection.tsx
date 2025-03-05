@@ -102,9 +102,7 @@ export default function NewsSection(){
                 {news.map((news, index) => (
                         <SwiperSlide key={index}>
                             <NewsCard
-                                date={news.date}
-                                title={news.title}
-                                img={news.img}
+                                {...news}
                             />
                         </SwiperSlide>
                 ))}
