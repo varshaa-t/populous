@@ -23,13 +23,6 @@ export default function Home() {
   const container = useRef(null);
 
   useGSAP(() => {
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: ".explore-trigger",
-      start: "top 5%",
-      end: "+=140%",
-      pin: ".explore-pin",
-      pinSpacing: true
-    });
 
     gsap.timeline({
       scrollTrigger: {
@@ -42,9 +35,30 @@ export default function Home() {
     })
     .to(".news", { yPercent: -1})
 
+    const handleResize = () => ScrollTrigger.refresh();
+
+    window.addEventListener("resize", handleResize);
+
+    const navMM = gsap.matchMedia();
+
+    navMM.add("(min-width: 1024px)", () => {
+      const scrollTrigger = ScrollTrigger.create({
+        trigger: ".explore-trigger",
+        start: "top 1%",
+        end: "+=140%",
+        pin: ".explore-pin",
+        pinSpacing: true
+      });
+
+      return () => {
+        scrollTrigger.kill();
+      }
+    });
+
     return () => {
-      scrollTrigger.kill();
-    };
+      navMM.revert();
+      window.removeEventListener("resize", handleResize);
+    }
   }, { scope: container });
 
   return (
@@ -64,11 +78,11 @@ export default function Home() {
           <video autoPlay loop muted className="w-screen brightness-50">
             <source src="/videos/video-2.mp4"/>
           </video>
-          <div className="explore-pin absolute top-60 lg:px-32 w-full">
+          <div className="explore-pin absolute top-[30vw] xs:top-[31vw] sm:top-[32vw] md:top-[37vw] lg:top-60 lg:px-32 w-full">
             <ExploreSection/>
           </div>
         </div>
-        <div className="bg-white h-full pt-[10%] xs:pt-[10%] sm:pt-[20%] md:pt-[40%] lg:pt-[50%] xl:pt-[60%]">
+        <div className="bg-white h-full -mt-24 xs:mt-0 xs:pt-[10%] sm:pt-[20%] md:pt-[40%] lg:pt-[50%] xl:pt-[60%]">
           <ProjectsSection/>
         </div>
         <div className="bg-white h-full py-[12vw]">
