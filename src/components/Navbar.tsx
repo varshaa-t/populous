@@ -47,7 +47,7 @@ export default function Navbar(){
                         <div className="hover:underline decoration-2 underline-offset-4">Disciplines</div>
                     </div>
                     <div className="flex flex-col space-y-8 font-medium">
-                        <div className="flex space-x-60 md:space-x-[10vw] lg:space-x-[15.5vw]">
+                        <div className="flex space-x-32 xs:space-x-60 md:space-x-[10vw] lg:space-x-[15.5vw]">
                             <div className="text-gray">Who we are</div>
                             <div>
                                 <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">About</div>
@@ -55,7 +55,7 @@ export default function Navbar(){
                                 <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Careers</div>
                             </div>
                         </div>
-                        <div className="flex space-x-[280px] md:space-x-[14.3vw] lg:space-x-[18.5vw] xl:space-x-[18vw]">
+                        <div className="flex space-x-[165px] xs:space-x-[280px] md:space-x-[14.3vw] lg:space-x-[18.5vw] xl:space-x-[18vw]">
                             <div className="text-gray">Impact</div>
                             <div>
                                 <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Sustainability</div>

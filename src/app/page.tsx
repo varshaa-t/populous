@@ -8,7 +8,6 @@ import Navbar from "@/components/Navbar";
 import NewsSection from "@/components/NewsSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SustainabilityAndCareersSection from "@/components/SustainabilityAndCareersSection";
-
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -39,24 +38,38 @@ export default function Home() {
 
     window.addEventListener("resize", handleResize);
 
-    const navMM = gsap.matchMedia();
+    const exploreMM = gsap.matchMedia();
 
-    navMM.add("(min-width: 1024px)", () => {
+    exploreMM.add("(min-width: 1024px) and (max-width: 1279px)", () => {
       const scrollTrigger = ScrollTrigger.create({
         trigger: ".explore-trigger",
         start: "top 1%",
-        end: "+=140%",
+        end: "+=80%",
         pin: ".explore-pin",
         pinSpacing: true
       });
-
+    
       return () => {
         scrollTrigger.kill();
-      }
+      };
     });
-
+    
+    exploreMM.add("(min-width: 1280px)", () => {
+      const scrollTrigger = ScrollTrigger.create({
+        trigger: ".explore-trigger",
+        start: "top 1%",
+        end: "+=110%",
+        pin: ".explore-pin",
+        pinSpacing: true
+      });
+    
+      return () => {
+        scrollTrigger.kill();
+      };
+    });
+    
     return () => {
-      navMM.revert();
+      exploreMM.revert();
       window.removeEventListener("resize", handleResize);
     }
   }, { scope: container });
