@@ -73,10 +73,10 @@ export default function NewsSection(){
                 <div className="text-3xl tracking-tight">News</div>
                 <div className="flex space-x-2 lg:space-x-6 items-center">
                     <div className="flex space-x-1 md:space-x-2">
-                        <div id="left-arrow" className="border px-2 py-2 rounded-md cursor-pointer hover:text-white hover:bg-[#1c19b5]">
+                        <div id="left-arrow" className="border px-2 py-2 rounded-md cursor-pointer hover:text-white hover:bg-dark-blue duration-200">
                             <LeftArrow/>
                         </div>
-                        <div id="right-arrow" className="border px-2 py-2 rounded-md cursor-pointer hover:text-white hover:bg-[#1c19b5]">
+                        <div id="right-arrow" className="border px-2 py-2 rounded-md cursor-pointer hover:text-white hover:bg-dark-blue duration-200">
                             <RightArrow/>
                         </div>
                     </div>

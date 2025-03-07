@@ -78,8 +78,11 @@ export default function Home() {
     <ReactLenis root>
       <div ref={container}>
         <div className="nav relative h-screen">
-          <video autoPlay loop muted className="fixed brightness-50 inset-0 w-screen h-screen object-cover -z-10">
+          <video autoPlay loop muted className="hidden md:block fixed brightness-50 inset-0 w-screen h-screen object-cover -z-10">
               <source src="/videos/video-1.mp4" />
+          </video>
+          <video autoPlay loop muted className="block md:hidden fixed brightness-50 inset-0 w-screen h-screen object-cover -z-10">
+              <source src="/videos/video-3.mp4" />
           </video>
           <Navbar/>
           <HeroSection/>

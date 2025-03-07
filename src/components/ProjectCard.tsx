@@ -1,5 +1,9 @@
+"use client";
+
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 import Image from 'next/image'
-import React from 'react'
+import React, { useRef } from 'react'
 
 type ProjectCardProps = {
     img: string;
@@ -24,10 +28,38 @@ function ProjectCard({img, title, year, size}: ProjectCardProps) {
 
     const {width, height} = sizeAttributes[size];
 
+    
+    const projectImageRef = useRef<HTMLImageElement | null>(null);
+
+    useGSAP(() => {
+        if(!projectImageRef.current) return;
+
+        const animation = gsap.to(projectImageRef.current, {
+            scale: 1.05,
+            duration: 0.4,
+            ease: "power1.inOut",
+            paused: true
+        })
+
+        const handleMouseEnter = () => animation.play();
+        const handleMouseLeave = () => animation.reverse();
+        
+        const imgElement = projectImageRef.current;
+
+        imgElement.addEventListener("mouseenter", handleMouseEnter);
+        imgElement.addEventListener("mouseleave", handleMouseLeave);
+
+        return () => {
+            imgElement.removeEventListener("mouseenter", handleMouseEnter);
+            imgElement.removeEventListener("mouseleave", handleMouseLeave);
+        };
+    }, []);
+
   return (
     <div className={`flex flex-col justify-between space-y-2 ${sizeClasses[size]} group`}>
-        <div>
+        <div className='overflow-hidden'>
             <Image
+                ref={projectImageRef}
                 width={width}
                 height={height}
                 src={img}
