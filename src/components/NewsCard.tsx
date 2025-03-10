@@ -5,6 +5,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Button from "./Button";
 
+gsap.registerPlugin(useGSAP);
+
 type NewsCardProps = {
     date: string;
     title: string;  

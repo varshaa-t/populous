@@ -5,6 +5,8 @@ import gsap from 'gsap';
 import Image from 'next/image'
 import React, { useRef } from 'react'
 
+gsap.registerPlugin(useGSAP);
+
 type ProjectCardProps = {
     img: string;
     title?: string;

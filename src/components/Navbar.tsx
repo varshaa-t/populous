@@ -2,15 +2,96 @@
 
 import Close from "@/icons/Close";
 import Menu from "@/icons/Menu";
-import { useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef, useState } from "react";
+
+gsap.registerPlugin(useGSAP);
 
 export default function Navbar(){
 
     const [isOpen, setIsOpen] = useState(false);
+    const navColumnOne = useRef<HTMLDivElement | null>(null);
+    const navColumnTwo = useRef<HTMLDivElement | null>(null); 
+    const menuRef = useRef<HTMLDivElement | null>(null);
+    const logoRef = useRef<HTMLDivElement | null>(null);
+    const sideColumnOneRef = useRef<HTMLDivElement | null>(null);
+    const sideColumnTwoRef = useRef<HTMLDivElement | null>(null);
+    const sideColumnThreeRef = useRef<HTMLDivElement | null>(null);
+    const sideColumnFourRef = useRef<HTMLDivElement | null>(null);
+    const sideColumnFiveRef = useRef<HTMLDivElement | null>(null);
+
+    useGSAP(() => {
+        
+        const navColumns = [navColumnOne.current, navColumnTwo.current];
+
+        navColumns.forEach((col) => {
+            if(!col) return ;
+
+            gsap.from(col.children, {
+                clipPath: "inset(0% 0% 100% 0%)",
+                y: 50,
+                opacity: 0,
+                stagger: 0.1,
+                duration: 0.4,
+                delay: 0.7
+            })
+        })
+
+        const logos = [menuRef.current, logoRef.current];
+
+        logos.forEach((logo) => {
+            if(!logo) return;
+
+            gsap.from(logo, {
+                y: 30,
+                opacity: 0,
+                duration: 0.4,
+                delay: 0.7
+            })
+            
+        })
+    }, {scope: ".nav-container"})
+
+    useGSAP(() => {
+
+        const sideColumns = [sideColumnOneRef.current, sideColumnTwoRef.current, sideColumnThreeRef.current, sideColumnFourRef.current, sideColumnFiveRef.current];
+
+        sideColumns.forEach((col) => {
+            if(!col) return ;
+
+            gsap.from(col.children, {
+                y: 50,
+                opacity: 0,
+                duration: 0.4,
+                delay: 0.2,
+                stagger: 0.1,
+                clipPath: "inset(0% 0% 100% 0%)"
+            })
+        })
+
+        const leftColumns = [sideColumnTwoRef.current, sideColumnFourRef.current];
+
+        leftColumns.forEach((col) => {
+            if(!col) return ;
+
+            gsap.from(col, {
+                y: 30,
+                opacity: 0,
+                duration: 0.4,
+                delay: 0.5,
+                clipPath: "inset(0% 0% 100% 0%)"
+            })
+        })
+
+    }, [isOpen])
 
     return (
-        <nav className="flex justify-between pl-3 pr-4 pt-3 xs:pl-10 xs:pt-7">
-            <div className="text-xl font-extrabold text-white cursor-pointer">
+        <nav className="nav-container flex justify-between pl-3 pr-4 pt-3 xs:pl-10 xs:pt-7">
+            <div 
+                ref={logoRef}
+                className="text-xl font-extrabold text-white cursor-pointer"
+            >
                 POPULOUS
             </div>
             <div 
@@ -21,17 +102,24 @@ export default function Navbar(){
             </div>
             {!isOpen &&
             <div className="text-white hidden md:flex md:space-x-[15vw] xl:space-x-[18vw]">
-                <div className="flex flex-col">
+                <div 
+                    ref={navColumnOne}    
+                    className="flex flex-col"
+                >
                     <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Explore</div>
                     <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Projects</div>
                     <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Disciplines</div>
                 </div>
-                <div className="flex flex-col">
+                <div 
+                    ref={navColumnTwo}
+                    className="flex flex-col"
+                >
                     <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Sustainability</div>
                     <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Digital Future</div>
                     <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Careers</div>
                 </div>
                 <div
+                    ref={menuRef}
                     className="cursor-pointer"
                     onClick={() => setIsOpen(!isOpen)}
                 >
@@ -40,24 +128,41 @@ export default function Navbar(){
             </div>
             }
             {isOpen && 
-                <div className="bg-white fixed z-0 flex flex-col space-y-[310px] md:space-y-[280px] xl:space-y-64 px-2 md:px-4 py-4 content-between w-full h-full rounded-none right-0 top-0 md:w-[50vw] md:h-[635px] md:rounded-md md:right-4 md:top-8 lg:px-6">
-                    <div className="flex flex-col text-5xl md:text-3xl lg:text-4xl xl:text-5xl tracking-tighter cursor-pointer">
+                <div className="bg-white fixed z-10 flex flex-col space-y-[310px] md:space-y-[280px] xl:space-y-64 px-2 md:px-4 py-4 content-between w-full h-full rounded-none right-0 top-0 md:w-[50vw] md:h-[635px] md:rounded-md md:right-4 md:top-8 lg:px-6">
+                    <div 
+                        ref={sideColumnOneRef}
+                        className="flex flex-col text-5xl md:text-3xl lg:text-4xl xl:text-5xl tracking-tighter cursor-pointer"
+                    >
                         <div className="hover:underline decoration-2 underline-offset-4">Explore</div>
                         <div className="hover:underline decoration-2 underline-offset-4">Projects</div>
                         <div className="hover:underline decoration-2 underline-offset-4">Disciplines</div>
                     </div>
                     <div className="flex flex-col space-y-8 font-medium">
                         <div className="flex space-x-32 xs:space-x-60 md:space-x-[10vw] lg:space-x-[15.5vw]">
-                            <div className="text-gray">Who we are</div>
-                            <div>
+                            <div
+                                ref={sideColumnTwoRef}
+                                className="text-gray"
+                            >
+                                Who we are
+                            </div>
+                            <div
+                                ref={sideColumnThreeRef}
+                            >
                                 <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">About</div>
                                 <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Team</div>
                                 <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Careers</div>
                             </div>
                         </div>
                         <div className="flex space-x-[165px] xs:space-x-[280px] md:space-x-[14.3vw] lg:space-x-[18.5vw] xl:space-x-[18vw]">
-                            <div className="text-gray">Impact</div>
-                            <div>
+                            <div 
+                                ref={sideColumnFourRef}
+                                className="text-gray"
+                            >
+                                Impact
+                            </div>
+                            <div
+                                ref={sideColumnFiveRef}
+                            >
                                 <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Sustainability</div>
                                 <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Digital Future</div>
                                 <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">News</div>
