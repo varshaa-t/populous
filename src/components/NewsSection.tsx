@@ -8,6 +8,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import {Navigation } from 'swiper/modules';
 import Button from "./Button";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
 
 export default function NewsSection(){
 
@@ -59,15 +64,32 @@ export default function NewsSection(){
         }
     ]
 
+    const newsSectionTextRef = useRef<HTMLDivElement | null>(null);
+
+    useGSAP(() => {
+
+        if(!newsSectionTextRef.current) return ;
+
+        gsap.from(newsSectionTextRef.current.children, {
+            clipPath: "inset(0% 0% 100% 0%)",
+            y: 100,
+            opacity: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: newsSectionTextRef.current,
+                start: "top 90%"
+            }
+        })
+    }, { scope: newsSectionTextRef })
+
     return (
         <div>
-            <div className="text-[27px] pl-[1.5vw] w-[370px] pb-32 xs:w-[460px] sm:text-3xl sm:w-[520px] sm:pl-[4vw] md:pb-52 lg:w-[610px] lg:pl-[8vw]">
-                We’re a global design firm
-                with colleagues spanning
-                four continents creating
-                experiences that amplify
-                the joy felt in shared human
-                moments.
+            <div ref={newsSectionTextRef} className="text-[22px] pl-[1.5vw] w-[370px] pb-32 xs:w-[460px] sm:text-3xl sm:w-[520px] sm:pl-[4vw] md:pb-52 lg:w-[610px] lg:pl-[8vw]">
+                <div>We’re a global design firm with</div>
+                <div>colleagues spanning four continents</div>
+                <div>creating experiences that amplify</div>
+                <div>the joy felt in shared human moments.</div>
             </div>
             <div className="flex justify-between items-center pl-[1.5vw] pr-[1.5vw] sm:pl-[4vw] sm:pr-[4vw] lg:pl-[8vw] lg:pr-[8vw]">
                 <div className="text-3xl tracking-tight">News</div>

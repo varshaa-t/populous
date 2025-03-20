@@ -18,6 +18,7 @@ export default function NewsCard({date, title, img}: NewsCardProps){
     const imageRef = useRef<HTMLImageElement | null>(null);
     const [showButton, setShowButton] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
+    const newsCardRef = useRef<HTMLDivElement | null>(null);
 
     useGSAP(() => {
         if (!imageRef.current) return;
@@ -59,8 +60,25 @@ export default function NewsCard({date, title, img}: NewsCardProps){
         });
     };
 
+    useGSAP(() => {
+
+        if(!newsCardRef.current) return ;
+
+        gsap.from(newsCardRef.current.children, {
+            y: 100,
+            opacity: 0,
+            scale: 1.05,
+            duration: 0.7,
+            scrollTrigger: {
+                trigger: newsCardRef.current,
+                start: "top 85%"
+            }
+        })
+
+    }, { scope: newsCardRef })
+
     return (
-        <div className="flex flex-col space-y-3 h-full bg-white px-2 py-6 sm:px-6 group">
+        <div ref={newsCardRef} className="flex flex-col space-y-3 h-full bg-white px-2 py-6 sm:px-6 group">
             <NewsTag/>
             <div className="overflow-hidden">
                 <Image
@@ -69,7 +87,7 @@ export default function NewsCard({date, title, img}: NewsCardProps){
                     height={330}
                     src={img}
                     alt="news-img"
-                    className="news-target rounded-md relative cursor-pointer"
+                    className="rounded-md relative cursor-pointer w-[630px]"
                     onMouseMove={handleMouseMove}
                 />
                 {showButton && (

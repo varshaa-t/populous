@@ -22,40 +22,46 @@ export default function Navbar(){
     const sideColumnFiveRef = useRef<HTMLDivElement | null>(null);
 
     useGSAP(() => {
-        
+
         const navColumns = [navColumnOne.current, navColumnTwo.current];
+        const logos = [menuRef.current, logoRef.current];
 
         navColumns.forEach((col) => {
             if(!col) return ;
 
-            gsap.from(col.children, {
-                clipPath: "inset(0% 0% 100% 0%)",
-                y: 50,
-                opacity: 0,
-                stagger: 0.1,
-                duration: 0.4,
-                delay: 0.7
-            })
-        })
+            function init(){
+                gsap.from(col, {
+                    clipPath: "inset(0% 0% 100% 0%)",
+                    y: 50,
+                    opacity: 0,
+                    stagger: 0.1,
+                    duration: 0.4,
+                    autoAlpha: 0
+                })
+            }
 
-        const logos = [menuRef.current, logoRef.current];
+            init();
+        })
 
         logos.forEach((logo) => {
             if(!logo) return;
 
-            gsap.from(logo, {
-                y: 30,
-                opacity: 0,
-                duration: 0.4,
-                delay: 0.7
-            })
-            
+            function init(){
+                gsap.from(logo, {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.4,
+                    autoAlpha: 0
+                })
+            }
+
+            init();
         })
-    }, {scope: ".nav-container"})
+    }, [isOpen])
 
     useGSAP(() => {
 
-        const sideColumns = [sideColumnOneRef.current, sideColumnTwoRef.current, sideColumnThreeRef.current, sideColumnFourRef.current, sideColumnFiveRef.current];
+        const sideColumns = [sideColumnOneRef.current, sideColumnThreeRef.current, sideColumnFiveRef.current];
 
         sideColumns.forEach((col) => {
             if(!col) return ;
@@ -87,10 +93,10 @@ export default function Navbar(){
     }, [isOpen])
 
     return (
-        <nav className="nav-container flex justify-between pl-3 pr-4 pt-3 xs:pl-10 xs:pt-7">
+        <nav className="flex justify-between pl-3 pr-4 pt-3 xs:pl-10 xs:pt-7">
             <div 
                 ref={logoRef}
-                className="text-xl font-extrabold text-white cursor-pointer"
+                className="text-xl font-extrabold text-white cursor-pointer invisible"
             >
                 POPULOUS
             </div>
@@ -104,7 +110,7 @@ export default function Navbar(){
             <div className="text-white hidden md:flex md:space-x-[15vw] xl:space-x-[18vw]">
                 <div 
                     ref={navColumnOne}    
-                    className="flex flex-col"
+                    className="flex flex-col invisible"
                 >
                     <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Explore</div>
                     <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Projects</div>
@@ -112,7 +118,7 @@ export default function Navbar(){
                 </div>
                 <div 
                     ref={navColumnTwo}
-                    className="flex flex-col"
+                    className="flex flex-col invisible"
                 >
                     <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Sustainability</div>
                     <div className="hover:underline decoration-1 underline-offset-2 cursor-pointer">Digital Future</div>
@@ -120,7 +126,7 @@ export default function Navbar(){
                 </div>
                 <div
                     ref={menuRef}
-                    className="cursor-pointer"
+                    className="cursor-pointer invisible"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     <Menu/>
