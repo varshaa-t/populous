@@ -16,6 +16,7 @@ export default function HeroSection(){
             gsap.from(textRef.current, {
                 clipPath: "inset(0% 0% 100% 0%)",
                 y: 100,
+                delay: 0.6,
                 opacity: 0,
                 duration: 0.4,
                 stagger: 0.1,

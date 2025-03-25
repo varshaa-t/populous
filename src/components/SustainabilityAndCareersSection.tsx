@@ -1,7 +1,35 @@
+"use client";
+
+import { useRef } from "react"
 import Button from "./Button"
 import SustainabilityAndCareersComponent from "./SustainabilityAndCareersComponent"
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 function SustainabilityAndCareersSection() {
+
+  const sacsTextRef = useRef<HTMLDivElement | null>(null);
+
+  useGSAP(() => {
+    if(!sacsTextRef.current) return;
+
+    gsap.from(sacsTextRef.current.children, {
+      opacity: 0,
+      clipPath: "inset(0% 0% 100% 0%)",
+      y: 50,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: sacsTextRef.current,
+        start: "top 10%"
+      }
+    })
+
+    ScrollTrigger.refresh();
+  }, []);
+
   return (
     <div className="flex flex-col space-y-16 xs:space-y-40 pl-[1.5vw] pr-[1.5vw] sm:pl-[4vw] sm:pr-[4vw] lg:pl-[8vw] lg:pr-[8vw]">
         <SustainabilityAndCareersComponent
@@ -21,9 +49,9 @@ function SustainabilityAndCareersSection() {
             type="type-2"
         />
         <div className="mx-auto flex pt-20 flex-col items-center space-y-12 lg:space-y-20">
-          <div className="text-4xl w-[70vw] tracking-tighter leading-[1] xs:text-[5.2vw] xs:w-[45vw] text-center">
-            Have a question?
-            Want to work with us?
+          <div ref={sacsTextRef} className="text-4xl w-[70vw] tracking-tighter leading-[1] xs:text-[5.2vw] xs:w-[45vw] text-center">
+            <div>Have a question?</div>
+            <div>Want to work with us?</div>
           </div>
           <div className="w-fit">
             <Button

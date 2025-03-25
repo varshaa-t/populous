@@ -37,7 +37,7 @@ export default function Navbar(){
                     opacity: 0,
                     stagger: 0.1,
                     duration: 0.4,
-                    delay: 0.2,
+                    delay: 0.4,
                     autoAlpha: 0
                 })
             }
@@ -53,7 +53,7 @@ export default function Navbar(){
                     y: 30,
                     opacity: 0,
                     duration: 0.4,
-                    delay: 0.2,
+                    delay: 0.4,
                     autoAlpha: 0
                 })
             }
