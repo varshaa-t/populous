@@ -20,11 +20,12 @@ export default function Navbar(){
     const sideColumnThreeRef = useRef<HTMLDivElement | null>(null);
     const sideColumnFourRef = useRef<HTMLDivElement | null>(null);
     const sideColumnFiveRef = useRef<HTMLDivElement | null>(null);
+    const logoRefTwo = useRef<HTMLDivElement | null>(null);;
 
     useGSAP(() => {
 
         const navColumns = [navColumnOne.current, navColumnTwo.current];
-        const logos = [menuRef.current, logoRef.current];
+        const logos = [menuRef.current, logoRef.current, logoRefTwo.current];
 
         navColumns.forEach((col) => {
             if(!col) return ;
@@ -36,6 +37,7 @@ export default function Navbar(){
                     opacity: 0,
                     stagger: 0.1,
                     duration: 0.4,
+                    delay: 0.2,
                     autoAlpha: 0
                 })
             }
@@ -51,6 +53,7 @@ export default function Navbar(){
                     y: 30,
                     opacity: 0,
                     duration: 0.4,
+                    delay: 0.2,
                     autoAlpha: 0
                 })
             }
@@ -101,7 +104,8 @@ export default function Navbar(){
                 POPULOUS
             </div>
             <div 
-                className="flex md:hidden cursor-pointer"
+                ref={logoRefTwo}
+                className="flex md:hidden cursor-pointer invisible"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <Menu/>

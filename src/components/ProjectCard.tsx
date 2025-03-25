@@ -2,10 +2,11 @@
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
 import Image from 'next/image'
 import React, { useRef } from 'react'
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type ProjectCardProps = {
     img: string;
@@ -30,8 +31,9 @@ function ProjectCard({img, title, year, size}: ProjectCardProps) {
 
     const {width, height} = sizeAttributes[size];
 
-    
     const projectImageRef = useRef<HTMLImageElement | null>(null);
+    const projectTitleRef = useRef<HTMLDivElement | null>(null);
+    const projectDateRef = useRef<HTMLDivElement | null>(null);
 
     useGSAP(() => {
         if(!projectImageRef.current) return;
@@ -51,10 +53,51 @@ function ProjectCard({img, title, year, size}: ProjectCardProps) {
         imgElement.addEventListener("mouseenter", handleMouseEnter);
         imgElement.addEventListener("mouseleave", handleMouseLeave);
 
+        gsap.from(projectImageRef.current, {
+            opacity: 0,
+            y: 100,
+            scale: 1.3,
+            duration: 1,
+            scrollTrigger: {
+                trigger: projectImageRef.current,
+                start: "top 95%"
+            }
+        })
+
+        ScrollTrigger.refresh();
+
         return () => {
             imgElement.removeEventListener("mouseenter", handleMouseEnter);
             imgElement.removeEventListener("mouseleave", handleMouseLeave);
         };
+    }, []);
+
+    useGSAP(() => {
+        if(!projectTitleRef.current || !projectDateRef.current) return;
+
+        gsap.from(projectTitleRef.current, {
+            opacity: 0,
+            autoAlpha: 0,
+            clipPath: "inset(0% 0% 100% 0%)",
+            duration: 0.5,
+            scrollTrigger: {
+                trigger: projectTitleRef.current,
+                start: "top 90%"
+            }
+        })
+
+        gsap.from(projectDateRef.current, {
+            opacity: 0,
+            autoAlpha: 0,
+            y: 50,
+            duration: 0.5,
+            scrollTrigger: {
+                trigger: projectDateRef.current,
+                start: "top 90%"
+            }
+        })
+
+        ScrollTrigger.refresh();
     }, []);
 
   return (
@@ -70,8 +113,18 @@ function ProjectCard({img, title, year, size}: ProjectCardProps) {
             />
         </div>
         <div className='flex justify-between text-[17px] hover:cursor-pointer'>
-            <div className='group-hover:underline'>{title}</div>
-            <div>{year}</div>
+            <div 
+                ref={projectTitleRef}
+                className='invisible group-hover:underline'
+            >
+                {title}
+            </div>
+            <div 
+                className='invisible'
+                ref={projectDateRef}
+            >
+                {year}
+            </div>
         </div>
     </div>
   )
