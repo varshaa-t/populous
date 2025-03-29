@@ -20,7 +20,7 @@ export default function Navbar(){
     const sideColumnThreeRef = useRef<HTMLDivElement | null>(null);
     const sideColumnFourRef = useRef<HTMLDivElement | null>(null);
     const sideColumnFiveRef = useRef<HTMLDivElement | null>(null);
-    const logoRefTwo = useRef<HTMLDivElement | null>(null);;
+    const logoRefTwo = useRef<HTMLDivElement | null>(null);
 
     useGSAP(() => {
 

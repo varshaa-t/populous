@@ -98,7 +98,7 @@ export default function Home() {
             <ExploreSection/>
           </div>
         </div>
-        <div className="bg-white h-full -mt-24 xs:mt-0 xs:pt-[10%] sm:pt-[20%] md:pt-[40%] lg:pt-[50%] xl:pt-[60%]">
+        <div className="bg-white h-full -mt-52 xs:-mt-16 sm:mt-0 sm:pt-[20%] md:pt-[35%] lg:pt-[50%] xl:pt-[60%]">
           <ProjectsSection/>
         </div>
         <div className="bg-white h-full py-[12vw]">

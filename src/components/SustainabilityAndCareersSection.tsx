@@ -16,18 +16,37 @@ function SustainabilityAndCareersSection() {
   useGSAP(() => {
     if(!sacsTextRef.current) return;
 
-    gsap.from(sacsTextRef.current.children, {
-      opacity: 0,
-      clipPath: "inset(0% 0% 100% 0%)",
-      y: 50,
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: sacsTextRef.current,
-        start: "top 10%"
-      }
+    const sacsMM = gsap.matchMedia();
+
+    sacsMM.add("(min-width: 380px)", () => {
+      gsap.from(sacsTextRef.current, {
+        opacity: 0,
+        clipPath: "inset(0% 0% 100% 0%)",
+        y: 50,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: sacsTextRef.current,
+          start: "top 10%"
+        }
+      })
+  
+      ScrollTrigger.refresh();
     })
 
-    ScrollTrigger.refresh();
+    sacsMM.add("(max-width: 379px)", () => {
+      gsap.from(sacsTextRef.current, {
+        opacity: 0,
+        clipPath: "inset(0% 0% 100% 0%)",
+        y: 50,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: sacsTextRef.current,
+          start: "top 85%"
+        }
+      })
+  
+      ScrollTrigger.refresh();
+    })
   }, []);
 
   return (
